@@ -8,14 +8,14 @@ A self-verifying approach for generating and editing structured `.docx` files (b
 
 ## The problem this really solves
 
-AI agents routinely hand you work that *looks* finished but isn't — not because they can't do the task, but because they act on **what they intended**, not **what actually happened**. The same gap shows up everywhere:
+An LLM hands you a document that *looks* finished but isn't — because it works from what it **produced in the source**, not from what a reader **actually gets once the file is rendered**. The same gap, over and over:
 
-- it reports it clicked *Submit*, but the click never landed — *claimed action ≠ real effect*;
-- it makes a file that's valid in the source, but breaks the moment it's rendered — *valid source ≠ valid output*;
-- its output covers the very content it was meant to show — *output occludes content*;
-- it leaves fields that read as "filled" to the program but blank to a human — *complete to the machine ≠ complete to a person*.
+- the source is valid but the rendered document is broken — the table of contents, page breaks, and heading styles silently disappear;
+- content overflows or hides itself — a table runs past the page edge, a figure sits on top of the text beneath it;
+- fields that count as "filled" to the program are blank to a human — `XXX` placeholders survive;
+- a value passes a shallow check while meaning the opposite — "not satisfied" slips through because the string *contains* "satisfied".
 
-Every one is the same failure: **the agent trusts its own account of what it did, instead of checking reality.**
+Every one is the same failure: **the generator trusts its own account of the document, instead of checking what the document actually is once it's rendered and read.**
 
 | | Naive approach *(what most do — and what this did first)* | Refined approach *(this repo)* |
 |---|---|---|
